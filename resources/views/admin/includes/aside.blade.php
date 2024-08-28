@@ -5,10 +5,19 @@
       <span class="brand-text font-weight-light">AdminLTE 3</span>
     </a>
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <!-- Sidebar user panel (optional) -->  
-
+   <!-- Sidebar -->
+   <div class="sidebar">
+    <!-- Sidebar user panel (optional) -->
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <div class="image">
+        <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+      </div>
+      <div class="info">
+        <a href="#" class="d-block">@auth
+          {{ auth()->user()->full_name }}
+        @endauth</a>
+      </div>
+    </div>
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -23,6 +32,25 @@
             </a>
          
           </li>
+
+          <li class="nav-item">
+            <a href="{{ route('admin.category') }}" class="nav-link">
+                <i class="nav-icon fas fa-tags"></i> <!-- or use fa-list-alt -->
+                <p>
+                    Categories
+                </p>
+            </a>
+        </li>
+
+        <li class="nav-item">
+          <a href="{{ route('admin.product') }}" class="nav-link">
+            <i class="nav-icon fas fa-box"></i> <!-- Updated icon -->
+            <p>
+                  Products
+              </p>
+          </a>
+      </li>
+        
   
       
         </ul>

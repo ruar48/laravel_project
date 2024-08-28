@@ -4,9 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController; 
 use App\Http\Controllers\User\UserController; 
 use App\Http\Controllers\Admin\AdminController; 
+use App\Http\Controllers\Admin\CategoryController; 
+use App\Http\Controllers\Admin\ProductController; 
 
 Route::get('/', function () {
-    return view('login');
+    return view('a');
 });
 
 
@@ -28,11 +30,37 @@ Route::controller(AuthController::class)->group(function () {
     Route::get('/login',  'showlogin')->name('login');
     Route::post('/login/action',  'login')->name('action.login');
 });
+
+
+
 Route::middleware(['auth', 'role:user'])->group(function () {
     Route::controller(UserController::class)->group(function () {
         Route::get('/user', 'index')->name('user.dashboard');
     });
 });
+
+
+
 Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::controller(AdminController::class)->group(function () {
+
+    Route::get('/admin', 'index')->name('admin.dashboard');
+
+    });
+    Route::controller(CategoryController::class)->group(function () {
+        Route::get('/category', 'category')->name('admin.category');
+        Route::post('/add',  'store')->name('action.category.add');
+        Route::post('/update',  'update')->name('action.category.update');
+        Route::post('/delete',  'delete')->name('action.category.delete');
+
+    });
+
+    Route::controller(ProductController::class)->group(function () {
+        Route::get('/product', 'product')->name('admin.product');
+        Route::post('/add/product', 'store')->name('action.product.add');
+        Route::post('/update/product', 'update')->name('action.product.update');
+        Route::post('/delete/product', 'delete')->name('action.product.delete');
+
+
+    });
 });

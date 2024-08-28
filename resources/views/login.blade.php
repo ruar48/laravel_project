@@ -47,13 +47,14 @@
                 </div>
             
         
-   
+
                 <div class="d-flex justify-content-end">
                     <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Register</button>
                 </div>
-            
+                {{-- <p class="text-center text-muted mt-2 mb-0">Don't have an account? <a href="{{  }}" class="fw-bold text-body"><u>Login here</u></a></p> --}}
+
             </form>
-            
+
 
             </div>
           </div>
